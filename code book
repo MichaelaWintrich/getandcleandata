@@ -1,0 +1,39 @@
+# Introduction
+
+The script `run_analysis.R`
+- Downloads data from the data set http://archive.ics.uci.edu/ml/datasets/Human+Activity+Recognition+Using+Smartphones
+- Merges the training and the test sets to create one data set.
+- Extracts only the measurements on the mean and standard deviation for each measurement. 
+-  Uses descriptive activity names to name the activities in the data set
+-  Appropriately labels the data set with descriptive variable names. 
+-  From the data set in step 4, creates a second, independent tidy data set with the average of each variable for each activity and each subject.
+
+  
+# The Code
+
+The script assumes that `plyr` library is already installed.
+It is structured according to functions that each perform one of the steps described above. 
+
+
+# The data set
+
+The data set used is structured in a way that there are two sets, training and tests. Each set is divided into separate files holding
+- measurements from the accelerometer & gyroscope
+- activity label
+- identifier of the subject
+
+# Getting and cleaning the data
+
+1) The script checks whether the data is already saved in the workspace. If not, it is downloaded from the UCI repository.
+
+2) The script merges the above mentioned test and training sets.
+The merged data set contains 10,299 cases with 561 features each (560 measurements and subject identifier). 
+
+3) Mean and standard deviation are extracted, resulting in 33 mean and 33 standard
+deviations features each, and creating a data frame with 68 features (with two added features from subject identifier and activity label).
+
+4) Activity labels are turned into clear and descriptive activity names.
+
+5) A tidy data set is created. It contains the the average of each variable for each activity and each subject. 
+10299 instances are sorted into 180 groups (30 subjects, 6 activities) and 66 mean and standard deviations are averaged for each group. The resulting data table has 180 rows and 66 columns.
+The tidy data set is exported to `UCI_HAR_tidy.txt`.
